@@ -1,13 +1,20 @@
 import "./form.css";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginFailed, loginSuccess } from "../../redux/actions/auth.actions";
+import {
+  loginFailed,
+  setLoginSuccessDispatchObject,
+} from "../../redux/actions/auth.actions";
 import { isValidEmail, isValidPassword } from "../validations/validation";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+
+import { userProfile } from "../../redux/actions/user.actions";
 
 function Form() {
   /* Allows you to retrieve the data entered by the user in the form */
-
+  const reduxState = useSelector((state) => state);
+  console.log(reduxState);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -44,8 +51,25 @@ function Form() {
                 console.log(data) 
             */
         const token = data.body.token;
-        dispatch(loginSuccess(token));
+        dispatch(setLoginSuccessDispatchObject(token));
+
         sessionStorage.setItem("token", token);
+
+        const responseProfile = await fetch(
+          "http://localhost:3001/api/v1/user/profile",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(responseProfile);
+        const profileData = await responseProfile.json();
+        console.log(profileData);
+        dispatch(userProfile(profileData.body));
+
         if (rememberMe) {
           localStorage.setItem("token", token);
         }
