@@ -1,0 +1,20 @@
+header {
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  width: 200px;
+}
+
+@media (min-width: 920px) {
+}

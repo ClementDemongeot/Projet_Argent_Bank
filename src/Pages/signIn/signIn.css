@@ -1,0 +1,7 @@
+.signIn-container {
+  background-color: #12002b;
+  flex: 1;
+  padding-bottom: 3rem;
+  padding-top: 3rem;
+  min-height: 1000px;
+}
