@@ -9,8 +9,6 @@ import { isValidEmail, isValidPassword } from "../validations/validation";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import { userProfile } from "../../redux/actions/user.actions";
-
 function Form() {
   /* Allows you to retrieve the data entered by the user in the form */
   const reduxState = useSelector((state) => state);
@@ -52,30 +50,14 @@ function Form() {
             */
         const token = data.body.token;
         dispatch(setLoginSuccessDispatchObject(token));
-
         sessionStorage.setItem("token", token);
-
-        const responseProfile = await fetch(
-          "http://localhost:3001/api/v1/user/profile",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log(responseProfile);
-        const profileData = await responseProfile.json();
-        console.log(profileData);
-        dispatch(userProfile(profileData.body));
 
         if (rememberMe) {
           localStorage.setItem("token", token);
         }
         navigate("/profile-user");
       } else {
-        const error = "Incorrect email/password";
+        const error = setErrorMessage("Incorrect email / password");
         dispatch(loginFailed(error));
       }
     } catch (error) {
