@@ -5,17 +5,17 @@ import { isValidName } from "../validations/validation";
 import { updateUsername } from "../../redux/actions/user.actions";
 
 function User() {
-  /* Updates user data on profile page from state redux */
   const token = useSelector((state) => state.auth.token);
   const userData = useSelector((state) => state.user.userData);
-  /* Manages the appearance of the username modification form */
+
   const [display, setDisplay] = useState(true);
-  /* Get username */
+
   const [userName, setUserName] = useState("");
-  /* Handle error message */
+
   const [errorMessage, setErrorMessage] = useState("");
 
   const dispatch = useDispatch();
+
   const handleSubmitUsername = async (event) => {
     event.preventDefault();
     if (!isValidName(userName)) {
@@ -39,10 +39,7 @@ function User() {
       if (response.ok) {
         const data = await response.json();
         const username = data.body.userName;
-        /* 
-                Checking that the query response is indeed retrieved
-                console.log(data) 
-            */
+
         dispatch(updateUsername(username));
         setDisplay(!display);
       } else {

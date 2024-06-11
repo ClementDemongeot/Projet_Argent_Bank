@@ -10,22 +10,20 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 function Form() {
-  /* Allows you to retrieve the data entered by the user in the form */
   const reduxState = useSelector((state) => state);
   console.log(reduxState);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  /* Indicates an error message if data is invalid */
+
   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  /* Asynchronous form function */
   const handleSubmit = async (event) => {
     event.preventDefault();
-    /* Handle error message */
+
     if (!isValidEmail(email)) {
       setErrorMessage("Invalid email adress");
       return;
@@ -44,10 +42,7 @@ function Form() {
       });
       if (response.ok) {
         const data = await response.json();
-        /* 
-                Checking that the query response is indeed retrieved
-                console.log(data) 
-            */
+
         const token = data.body.token;
         dispatch(setLoginSuccessDispatchObject(token));
         sessionStorage.setItem("token", token);
