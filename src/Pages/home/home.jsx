@@ -1,10 +1,16 @@
 import "./home.css";
-
+import FeaturesItemsData from "./../../Data/FeaturesItemsData.json";
 import iconChat from "./../../assets/img/icon-chat.png";
 import iconMoney from "./../../assets/img/icon-money.png";
 import iconSecurity from "./../../assets/img/icon-security.png";
+import Item from "../../components/item/item";
 
 function Home() {
+  const ImageData = {
+    "icon-chat.png": iconChat,
+    "icon-money.png": iconMoney,
+    "icon-security.png": iconSecurity,
+  };
   return (
     <main>
       <section className="banner">
@@ -21,35 +27,15 @@ function Home() {
       </section>
 
       <section className="feature">
-        <div className="feature-container">
-          <img className="feature-icon" src={iconChat} alt="icon chat" />
-          <h2 className="feature-title">You are our #1 priority</h2>
-          <p className="feature-text">
-            Need to talk to a representative? You can get in touch through our
-            24/7 chat or through a phone call in less than 5 minutes.
-          </p>
-        </div>
-
-        <div className="feature-container">
-          <img className="feature-icon" src={iconMoney} alt="icon money" />
-          <h2 className="feature-title">More savings means higher rates</h2>
-          <p className="feature-text">
-            The more you save with us, the higher your interest rate will be!
-          </p>
-        </div>
-
-        <div className="feature-container">
-          <img
-            className="feature-icon"
-            src={iconSecurity}
-            alt="icon security"
+        {FeaturesItemsData.map((data) => (
+          <Item
+            key={data.id}
+            image={ImageData[data.image]}
+            descriptionImage={data.descriptionImage}
+            title={data.title}
+            description={data.description}
           />
-          <h2 className="feature-title">Security you can trust</h2>
-          <p className="feature-text">
-            We use top of the line encryption to make sure your data and money
-            is always safe.
-          </p>
-        </div>
+        ))}
       </section>
     </main>
   );

@@ -1,0 +1,77 @@
+.profile-user-container {
+  background-color: #12002b;
+  flex: 1;
+  padding-bottom: 5rem;
+  padding-top: 1rem;
+  min-height: 1000px;
+}
+
+.profile-user-account {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  width: 80%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  text-align: left;
+  margin-bottom: 2rem;
+  background-color: white;
+}
+
+.profile-user-account-content {
+  width: 100%;
+  flex: 1;
+}
+
+.profile-user-account-name {
+  font-size: 1rem;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  font-weight: 200;
+  color: #2c3e50;
+}
+
+.profile-user-account-amount {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+  color: #2c3e50;
+}
+
+.profile-user-account-description {
+  margin: 0;
+  font-weight: 200;
+  color: #2c3e50;
+}
+
+.profile-user-account-transaction {
+  width: 200px;
+}
+
+.transaction-button {
+  display: block;
+  width: 200px;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: white;
+
+  margin-top: 1rem;
+}
+
+@media (max-width: 950px) {
+  .profile-user-account {
+    flex-direction: column;
+  }
+  .transaction-button {
+    width: 100%;
+  }
+  .profile-user-account-transaction {
+    width: 100%;
+  }
+}

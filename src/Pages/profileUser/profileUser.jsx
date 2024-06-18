@@ -3,6 +3,8 @@ import User from "../../components/user/user";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { userProfile } from "../../redux/actions/user.actions";
+import AccountData from "../../components/accountData/AccountData";
+import AccountDataCard from "./../../Data/AccountDataCard.json";
 
 function ProfileUser() {
   const token = useSelector((state) => state.auth.token);
@@ -50,46 +52,14 @@ function ProfileUser() {
   return (
     <main className="profile-user-container">
       <User />
-
-      <section className="profile-user-account">
-        <div className="profile-user-account-content">
-          <h2 className="profile-user-account-name">
-            Argent Bank Checking (x8349)
-          </h2>
-          <p className="profile-user-account-amount">$2,082.79</p>
-          <p className="profile-user-account-description">Available Balance</p>
-        </div>
-
-        <div className="profile-user-account-transaction">
-          <button className="transaction-button">View transactions</button>
-        </div>
-      </section>
-      <section className="profile-user-account">
-        <div className="profile-user-account-content">
-          <h2 className="profile-user-account-name">
-            Argent Bank Savings (x6712)
-          </h2>
-          <p className="profile-user-account-amount">$10,928.42</p>
-          <p className="profile-user-account-description">Available Balance</p>
-        </div>
-
-        <div className="profile-user-account-transaction">
-          <button className="transaction-button">View transactions</button>
-        </div>
-      </section>
-      <section className="profile-user-account">
-        <div className="profile-user-account-content">
-          <h2 className="profile-user-account-name">
-            Argent Bank Credit Card (x8349)
-          </h2>
-          <p className="profile-user-account-amount">$184.30</p>
-          <p className="profile-user-account-description">Current Balance</p>
-        </div>
-
-        <div className="profile-user-account-transaction">
-          <button className="transaction-button">View transactions</button>
-        </div>
-      </section>
+      {AccountDataCard.map((data) => (
+        <AccountData
+          key={data.id}
+          title={data.title}
+          amount={data.amount}
+          description={data.description}
+        />
+      ))}
     </main>
   );
 }
