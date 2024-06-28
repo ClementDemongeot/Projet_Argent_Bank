@@ -8,6 +8,7 @@ import {
 import { isValidEmail, isValidPassword } from "../validations/validation";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { profileUser } from "../../config/routes";
 
 function Form() {
   const reduxState = useSelector((state) => state);
@@ -50,7 +51,7 @@ function Form() {
         if (rememberMe) {
           localStorage.setItem("token", token);
         }
-        navigate("/profile-user");
+        navigate(profileUser);
       } else {
         const error = setErrorMessage("Incorrect email / password");
         dispatch(loginFailed(error));
