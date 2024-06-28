@@ -5,5 +5,5 @@ import { ghPages } from "vite-plugin-gh-pages";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), ghPages()],
-  base: "/Projet_Argent_bank/",
+  base: "/Projet_Argent_Bank/",
 });
