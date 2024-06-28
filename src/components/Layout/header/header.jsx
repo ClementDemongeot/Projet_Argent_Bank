@@ -4,6 +4,7 @@ import Logo from "./../../../assets/img/argentBankLogo.webp";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../../redux/actions/auth.actions";
 import { useSelector, useDispatch } from "react-redux";
+import { base, profileUser, signIn } from "../../../config/routes";
 
 function Header() {
   const isConnected = useSelector((state) => state.auth.token);
@@ -16,23 +17,23 @@ function Header() {
     dispatch(logout());
     sessionStorage.clear();
     localStorage.clear();
-    navigate("/");
+    navigate(base);
   };
   return (
     <header>
       <div className="header-container">
-        <Link to="/">
+        <Link to={base}>
           <img className="header-logo" alt="Logo" src={Logo} />
         </Link>
         {isConnected ? (
           <div className="header-nav-connected">
-            <Link className="header-nav-connected" to="/profile-user">
+            <Link className="header-nav-connected" to={profileUser}>
               <i className="fa fa-user-circle" />
               <p>{username}</p>
             </Link>
             <Link
               className="header-nav-connected"
-              to="/"
+              to={base}
               onClick={logoutHandler}
             >
               <i className="fa fa-sign-out" />
@@ -40,7 +41,7 @@ function Header() {
             </Link>
           </div>
         ) : (
-          <Link className="header-nav-not-connected" to="/signin">
+          <Link className="header-nav-not-connected" to={signIn}>
             <i className="fa fa-user-circle"></i>
             <p>Sign In</p>
           </Link>

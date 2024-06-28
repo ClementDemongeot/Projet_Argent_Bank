@@ -5,6 +5,7 @@ import SignIn from "./Pages/signIn/signIn";
 import ProfileUser from "./Pages/profileUser/profileUser";
 import Footer from "./components/Layout/footer/footer";
 import { useSelector } from "react-redux";
+import { base, profileUser, signIn } from "./config/routes";
 
 function App() {
   const isConnected = useSelector((state) => state.auth.isConnected);
@@ -12,11 +13,11 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path={base} element={<Home />} />
+        <Route path={signIn} element={<SignIn />} />
         <Route
-          path="/profile-user"
-          element={isConnected ? <ProfileUser /> : <Navigate to="/signin" />}
+          path={profileUser}
+          element={isConnected ? <ProfileUser /> : <Navigate to={signIn} />}
         />
       </Routes>
       <Footer />
